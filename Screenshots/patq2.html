@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hobbies Form</title>
+</head>
+<body>
+  <h2>Enter Your Hobbies</h2>
+  <form id="hobbyForm">
+    <input type="text" class="hobby" placeholder="Enter hobby">
+    <br>
+    <div id="msg"></div>
+    <br>
+    <button type="button" id="add">Add Hobby</button>
+  </form>
+  <script>
+    let form = document.getElementById("hobbyForm")
+    let add = document.getElementById("add")
+    let msg = document.getElementById("msg")
+    function validate(input) {
+      let regex = /^[A-Za-z\s]+$/
+      if(regex.test(input.value)) {
+        // input.style.borderColor = "green"
+        msg.innerText = ""
+      } else {
+        // input.style.borderColor = "red"
+        msg.style.color = "red"
+        msg.innerText = "Only letters allowed"
+      }
+    }
+    form.addEventListener("input", e => {
+      if(e.target.classList.contains("hobby")) {
+        validate(e.target)
+      }
+    })
+    add.onclick = function() {
+      let newInput = document.createElement("input")
+      newInput.type = "text"
+      newInput.placeholder = "Enter hobby"
+      newInput.classList.add("hobby")
+      form.insertBefore(newInput, msg)
+    }
+  </script>
+</body>
+</html>
